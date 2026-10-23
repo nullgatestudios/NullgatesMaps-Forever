@@ -1,5 +1,5 @@
 <#
-    Automated Packaging Script for Bleakfiber Addons
+    Automated Packaging Script for Nullgate Addons
     Usage:
         .\package.ps1
         .\package.ps1 -Version "1.0.7" -Notes "Feature update description"

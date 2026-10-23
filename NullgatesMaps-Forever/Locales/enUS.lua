@@ -9,7 +9,7 @@ local L = setmetatable({}, {
 BFM.L = L
 
 -- English Localization Strings
-L["ADDON_TITLE"] = "BleakfibersMaps-Forever"
+L["ADDON_TITLE"] = "NullgatesMaps-Forever"
 L["MAP_PLAYER_COORDS"] = "Player: %s"
 L["MAP_CURSOR_COORDS"] = "Cursor: %s"
 L["COORDS_FORMAT"] = "%.1f, %.1f"

@@ -1,5 +1,5 @@
 --[[
-    Bleakfiber's Maps - Forever
+    Nullgate's Maps - Forever
     Modules/WorldMap/WorldMapFog.lua - Fog of War / Map Reveal with Customizable Tint & Opacity
 ]]
 

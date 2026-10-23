@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.0] - 2026-10-23: Bleakfiber's Maps is now Nullgate's Maps
+
+### Changed
+- **New name**: Bleakfiber's Maps is now **Nullgate's Maps**, from **Nullgate Studios**. It is the same addon on the same CurseForge page.
+- **A fresh start for the WoW Forever launch**: the addon now lives in the `NullgatesMaps-Forever` folder. Settings from the beta are not carried over, so set the addon up again.
+- **Remove the old version**: if you copied your old `Interface` folder over, delete the `BleakfibersMaps-Forever` folder from `Interface\AddOns`. If the old version is still installed, a message offers to disable it.
+- **New slash commands**: `/nmaps` opens the settings. The old `/bfm` and `/bleakfibersmaps` commands no longer exist, so please update any macros that use them.
+- **Nullgate's Quest Tracker**: the minimap coordinates still step aside when the Quest Tracker's location bar is on.
+
 ## [1.0.8] - 2026-10-09
 
 ### Changed

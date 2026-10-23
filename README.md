@@ -1,14 +1,14 @@
-# Bleakfiber's Maps - Forever
+# Nullgate's Maps - Forever
 
-[![Interface](https://img.shields.io/badge/Interface-16001%20(WoW%20Forever)-0078D7.svg?style=flat-square)](https://github.com/Bleakfiber/BleakfibersMaps-Forever)
-[![Release](https://img.shields.io/badge/Release-v1.0.7-ffd100.svg?style=flat-square)](https://github.com/Bleakfiber/BleakfibersMaps-Forever/releases)
+[![Interface](https://img.shields.io/badge/Interface-16001%20(WoW%20Forever)-0078D7.svg?style=flat-square)](https://github.com/nullgatestudios/NullgatesMaps-Forever)
+[![Release](https://img.shields.io/badge/Release-v1.0.7-ffd100.svg?style=flat-square)](https://github.com/nullgatestudios/NullgatesMaps-Forever/releases)
 [![License](https://img.shields.io/badge/License-Source--Available-crimson.svg?style=flat-square)](LICENSE.md)
-[![Dependencies](https://img.shields.io/badge/Dependencies-Zero%20External-2ea44f.svg?style=flat-square)](https://github.com/Bleakfiber/BleakfibersMaps-Forever)
-[![Suite](https://img.shields.io/badge/Suite-Bleakfiber's%20Addon%20Suite-8a2be2.svg?style=flat-square)](https://github.com/Bleakfiber)
+[![Dependencies](https://img.shields.io/badge/Dependencies-Zero%20External-2ea44f.svg?style=flat-square)](https://github.com/nullgatestudios/NullgatesMaps-Forever)
+[![Suite](https://img.shields.io/badge/Suite-Nullgate's%20Addon%20Suite-8a2be2.svg?style=flat-square)](https://github.com/nullgatestudios)
 
-**Bleakfiber's Maps** is a high-performance, modular World Map and Minimap enhancement suite designed specifically for **World of Warcraft: Forever** (Interface 16001).
+**Nullgate's Maps** is a high-performance, modular World Map and Minimap enhancement suite designed specifically for **World of Warcraft: Forever** (Interface 16001).
 
-Engineered to transform the default Blizzard map experience into a clean, modern navigation interface, it pairs a bespoke **Dark Slate & Gold** visual design language with essential exploration features: live World Map cursor and player coordinates, intelligent Fog of War map overlay revealing undiscovered zones, a minimalist square minimap with mouse wheel zoom, minimap HUD coordinates, and seamless profile synchronization with the **Bleakfiber Addon Suite**.
+Engineered to transform the default Blizzard map experience into a clean, modern navigation interface, it pairs a bespoke **Dark Slate & Gold** visual design language with essential exploration features: live World Map cursor and player coordinates, intelligent Fog of War map overlay revealing undiscovered zones, a minimalist square minimap with mouse wheel zoom, minimap HUD coordinates, and seamless profile synchronization with the **Nullgate Addon Suite**.
 
 Runs **100% standalone out of the box** with zero required third-party libraries or addons.
 
@@ -29,7 +29,7 @@ Runs **100% standalone out of the box** with zero required third-party libraries
 - [Slash Commands Reference](#-slash-commands-reference)
 - [Architecture & File Overview](#-architecture--file-overview)
 - [Installation Guide](#-installation-guide)
-- [Bleakfiber Addon Suite Ecosystem](#-bleakfiber-addon-suite-ecosystem)
+- [Nullgate Addon Suite Ecosystem](#-nullgate-addon-suite-ecosystem)
 - [License & Support](#-license--support)
 
 ---
@@ -42,7 +42,7 @@ Runs **100% standalone out of the box** with zero required third-party libraries
 * **Modern Square Minimap**: Sleek, borderless square minimap featuring sharp Dark Slate & Gold borders and clutter-reduction toggles.
 * **Minimap Mouse Wheel Zoom**: Effortlessly zoom the minimap in and out using your mouse wheel.
 * **Minimap HUD Coordinates**: Compact coordinate readout situated below the minimap.
-* **Non-Destructive Profile Capture**: Instant profile synchronization with `BleakfibersAddonConfig-Forever` that preserves active settings upon profile creation.
+* **Non-Destructive Profile Capture**: Instant profile synchronization with `NullgatesAddonConfig-Forever` that preserves active settings upon profile creation.
 
 ---
 
@@ -74,16 +74,16 @@ Instant positional awareness at a glance:
 - Configurable font styling, background visibility, and positioning.
 
 ### 5. Native Dark Slate & Gold GUI
-A clean, responsive configuration interface accessible via `/bfm` or `/maps`:
+A clean, responsive configuration interface accessible via `/nmaps` or `/maps`:
 - Tabbed settings for World Map, Minimap, Coordinates, and Profiles.
 - Live sliders for scale, alpha, and coordinate update intervals.
 - Integrated color pickers for border accents and fog tinting.
 
 ### 6. Master Hub & Profile Sync
-Deep integration with `BleakfibersAddonConfig-Forever`:
+Deep integration with `NullgatesAddonConfig-Forever`:
 - Seamlessly registers into the BAC master hub sidebar.
 - Non-destructive profile creation that clones current settings rather than wiping to factory defaults.
-- One-click profile switching across all Bleakfiber addons.
+- One-click profile switching across all Nullgate addons.
 
 ---
 
@@ -93,21 +93,21 @@ Deep integration with `BleakfibersAddonConfig-Forever`:
 | :--- | :--- |
 | **Mouse Wheel on Minimap** | Zooms the minimap view in and out. |
 | **Right-Click Minimap** | Opens the standard Blizzard tracking popup menu. |
-| **`/bfm` or `/maps`** | Opens the graphical configuration panel. |
-| **`/bfm coords`** | Toggles coordinate displays on and off. |
-| **`/bfm fog`** | Toggles the Fog of War map revealer overlay. |
+| **`/nmaps` or `/maps`** | Opens the graphical configuration panel. |
+| **`/nmaps coords`** | Toggles coordinate displays on and off. |
+| **`/nmaps fog`** | Toggles the Fog of War map revealer overlay. |
 
 ---
 
 ## 🛠️ Configuration Guide
 
-Type `/bfm` or `/maps` to open the options panel:
+Type `/nmaps` or `/maps` to open the options panel:
 
 1. **General / World Map**: Enable/disable world map coordinates, adjust coordinate position and text formatting, and toggle map fading.
 2. **Fog of War**: Toggle unexplored map overlays, adjust overlay color tint, and set opacity levels (10%–100%).
 3. **Minimap**: Toggle square minimap styling, enable mouse wheel zoom, and customize visibility of default Blizzard minimap icons.
 4. **Minimap Coordinates**: Toggle the minimap coordinate HUD, adjust font size, and set position anchors.
-5. **Profiles**: Create, copy, delete, and switch configurations with full Bleakfiber Addon Suite synchronization.
+5. **Profiles**: Create, copy, delete, and switch configurations with full Nullgate Addon Suite synchronization.
 
 ---
 
@@ -115,19 +115,19 @@ Type `/bfm` or `/maps` to open the options panel:
 
 | Command | Description |
 | :--- | :--- |
-| `/bfm` | Opens the graphical configuration panel. |
+| `/nmaps` | Opens the graphical configuration panel. |
 | `/maps` | Alternative shortcut to open the configuration panel. |
-| `/bfm coords` | Quick-toggles coordinate readouts. |
-| `/bfm fog` | Quick-toggles Fog of War revealer overlay. |
-| `/bfm profile <name>` | Switches active profile or prints current profile name. |
+| `/nmaps coords` | Quick-toggles coordinate readouts. |
+| `/nmaps fog` | Quick-toggles Fog of War revealer overlay. |
+| `/nmaps profile <name>` | Switches active profile or prints current profile name. |
 
 ---
 
 ## 🏗️ Architecture & File Overview
 
 ```
-BleakfibersMaps-Forever/
-├── BleakfibersMaps-Forever.toc        # Addon metadata, SavedVariables & manifest
+NullgatesMaps-Forever/
+├── NullgatesMaps-Forever.toc        # Addon metadata, SavedVariables & manifest
 ├── Core/
 │   ├── Init.lua                       # Addon initialization, lifecycle & event engine
 │   ├── Constants.lua                  # Default visual constants, colors & layouts
@@ -149,31 +149,31 @@ BleakfibersMaps-Forever/
 
 ## 💾 Installation Guide
 
-1. Download the latest release package from the official [Releases](https://github.com/Bleakfiber/BleakfibersMaps-Forever/releases) page.
+1. Download the latest release package from the official [Releases](https://github.com/nullgatestudios/NullgatesMaps-Forever/releases) page.
 2. Exit World of Warcraft completely.
-3. Extract the downloaded archive (`BleakfibersMaps-Forever 1.0.7.zip`).
-4. Copy the `BleakfibersMaps-Forever` folder into your WoW client AddOns directory:
+3. Extract the downloaded archive (`NullgatesMaps-Forever 1.0.7.zip`).
+4. Copy the `NullgatesMaps-Forever` folder into your WoW client AddOns directory:
    ```
-   World of Warcraft/_forever_/Interface/AddOns/BleakfibersMaps-Forever
+   World of Warcraft/_forever_/Interface/AddOns/NullgatesMaps-Forever
    ```
-5. Launch World of Warcraft, open your map (`M`), and type `/bfm` to configure settings.
+5. Launch World of Warcraft, open your map (`M`), and type `/nmaps` to configure settings.
 
 ---
 
-## 🌌 Bleakfiber Addon Suite Ecosystem
+## 🌌 Nullgate Addon Suite Ecosystem
 
-Bleakfiber's Maps integrates seamlessly with the entire **Bleakfiber Addon Suite**:
+Nullgate's Maps integrates seamlessly with the entire **Nullgate Addon Suite**:
 
-* **[Bleakfiber's Addon Config](https://github.com/Bleakfiber/BleakfibersAddonConfig-Forever)**: Centralized master configuration hub with unified mover mode and cross-addon profile syncing.
-* **[Bleakfiber's Action Bars](https://github.com/Bleakfiber/BleakfibersActionBars-Forever)**: Minimalist action bar suite with bags container, totem bars, and cooldown pulse.
-* **[Bleakfiber's Quest Tracker](https://github.com/Bleakfiber/BleakfibersQuestTracker-Forever)**: High-performance quest tracker with 360° Wayfinder navigation and interactive quest items.
-* **[Bleakfiber's Unit Toggles](https://github.com/Bleakfiber/BleakfibersUnitToggles-Forever)**: Instant Blizzard unit name & nameplate toggle suite with 20 CVar presets.
+* **[Nullgate's Addon Config](https://github.com/nullgatestudios/NullgatesAddonConfig-Forever)**: Centralized master configuration hub with unified mover mode and cross-addon profile syncing.
+* **[Nullgate's Action Bars](https://github.com/nullgatestudios/NullgatesActionBars-Forever)**: Minimalist action bar suite with bags container, totem bars, and cooldown pulse.
+* **[Nullgate's Quest Tracker](https://github.com/nullgatestudios/NullgatesQuestTracker-Forever)**: High-performance quest tracker with 360° Wayfinder navigation and interactive quest items.
+* **[Nullgate's Unit Toggles](https://github.com/nullgatestudios/NullgatesUnitToggles-Forever)**: Instant Blizzard unit name & nameplate toggle suite with 20 CVar presets.
 
 ---
 
 ## 📜 License & Support
 
 * **License**: Restricted - Source-Available (All Rights Reserved, No Derivatives). See [LICENSE.md](LICENSE.md) for full terms.
-* **Issues & Feedback**: Encounter a bug or have a feature request? Open an issue on our [GitHub Issue Tracker](https://github.com/Bleakfiber/BleakfibersMaps-Forever/issues).
-* **Author**: Bleakfiber
+* **Issues & Feedback**: Encounter a bug or have a feature request? Open an issue on our [GitHub Issue Tracker](https://github.com/nullgatestudios/NullgatesMaps-Forever/issues).
+* **Author**: Nullgate
 

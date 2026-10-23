@@ -1,5 +1,5 @@
 --[[
-    Bleakfiber's Maps - Forever
+    Nullgate's Maps - Forever
     Core/Config.lua - Data Layer: DB Defaults, Profiles, Get/Set Accessors, & Notification Hooks
 ]]
 
@@ -79,59 +79,59 @@ end
     Database & Profile Initialization (With Auto-Migration from Legacy Schemas)
 -------------------------------------------------------------------------------]]
 function BFM:InitDB()
-    if type(BleakfibersMapsDB) ~= "table" then
-        BleakfibersMapsDB = {}
+    if type(NullgatesMapsDB) ~= "table" then
+        NullgatesMapsDB = {}
     end
 
     -- Persistent UI window bounds
-    if type(BleakfibersMapsDB.configWindow) ~= "table" then
-        BleakfibersMapsDB.configWindow = DeepCopy(defaultWindowSettings)
+    if type(NullgatesMapsDB.configWindow) ~= "table" then
+        NullgatesMapsDB.configWindow = DeepCopy(defaultWindowSettings)
     else
-        MergeDefaults(BleakfibersMapsDB.configWindow, defaultWindowSettings)
+        MergeDefaults(NullgatesMapsDB.configWindow, defaultWindowSettings)
     end
 
     -- Profile layer initialization & backward-compatibility migration
-    if type(BleakfibersMapsDB.profiles) ~= "table" then
-        BleakfibersMapsDB.profiles = {}
+    if type(NullgatesMapsDB.profiles) ~= "table" then
+        NullgatesMapsDB.profiles = {}
 
         -- If user upgraded from v1.0.01 - v1.0.04 with flat settings:
-        if type(BleakfibersMapsDB.minimap) == "table" or type(BleakfibersMapsDB.worldmap) == "table" then
-            BleakfibersMapsDB.profiles["Default"] = {
-                minimap = BleakfibersMapsDB.minimap or DeepCopy(defaultProfileSettings.minimap),
-                worldmap = BleakfibersMapsDB.worldmap or DeepCopy(defaultProfileSettings.worldmap),
+        if type(NullgatesMapsDB.minimap) == "table" or type(NullgatesMapsDB.worldmap) == "table" then
+            NullgatesMapsDB.profiles["Default"] = {
+                minimap = NullgatesMapsDB.minimap or DeepCopy(defaultProfileSettings.minimap),
+                worldmap = NullgatesMapsDB.worldmap or DeepCopy(defaultProfileSettings.worldmap),
             }
-            BleakfibersMapsDB.minimap = nil
-            BleakfibersMapsDB.worldmap = nil
+            NullgatesMapsDB.minimap = nil
+            NullgatesMapsDB.worldmap = nil
         end
     end
 
-    if not BleakfibersMapsDB.activeProfile or BleakfibersMapsDB.activeProfile == "" then
-        BleakfibersMapsDB.activeProfile = "Default"
+    if not NullgatesMapsDB.activeProfile or NullgatesMapsDB.activeProfile == "" then
+        NullgatesMapsDB.activeProfile = "Default"
     end
 
-    if not BleakfibersMapsDB.profiles[BleakfibersMapsDB.activeProfile] then
-        BleakfibersMapsDB.profiles[BleakfibersMapsDB.activeProfile] = DeepCopy(defaultProfileSettings)
+    if not NullgatesMapsDB.profiles[NullgatesMapsDB.activeProfile] then
+        NullgatesMapsDB.profiles[NullgatesMapsDB.activeProfile] = DeepCopy(defaultProfileSettings)
     end
 
     -- Ensure active profile has all required sub-tables & defaults
-    MergeDefaults(BleakfibersMapsDB.profiles[BleakfibersMapsDB.activeProfile], defaultProfileSettings)
+    MergeDefaults(NullgatesMapsDB.profiles[NullgatesMapsDB.activeProfile], defaultProfileSettings)
 
     -- Bind active profile to BFM.db and configWindow
-    BFM.db = BleakfibersMapsDB.profiles[BleakfibersMapsDB.activeProfile]
-    BFM.db.configWindow = BleakfibersMapsDB.configWindow
+    BFM.db = NullgatesMapsDB.profiles[NullgatesMapsDB.activeProfile]
+    BFM.db.configWindow = NullgatesMapsDB.configWindow
 end
 
 --[[-----------------------------------------------------------------------------
     Profile Accessors & Management
 -------------------------------------------------------------------------------]]
 function BFM:GetActiveProfile()
-    return (BleakfibersMapsDB and BleakfibersMapsDB.activeProfile) or "Default"
+    return (NullgatesMapsDB and NullgatesMapsDB.activeProfile) or "Default"
 end
 
 function BFM:GetProfiles()
     local list = {}
-    if BleakfibersMapsDB and BleakfibersMapsDB.profiles then
-        for name in pairs(BleakfibersMapsDB.profiles) do
+    if NullgatesMapsDB and NullgatesMapsDB.profiles then
+        for name in pairs(NullgatesMapsDB.profiles) do
             table.insert(list, name)
         end
     end
@@ -143,18 +143,18 @@ end
 function BFM:SetActiveProfile(name)
     if not name or name == "" then return end
     self:InitDB()
-    if not BleakfibersMapsDB.profiles[name] then
-        local cur = BleakfibersMapsDB.profiles[BleakfibersMapsDB.activeProfile]
-        BleakfibersMapsDB.profiles[name] = DeepCopy(cur or defaultProfileSettings)
+    if not NullgatesMapsDB.profiles[name] then
+        local cur = NullgatesMapsDB.profiles[NullgatesMapsDB.activeProfile]
+        NullgatesMapsDB.profiles[name] = DeepCopy(cur or defaultProfileSettings)
     else
-        MergeDefaults(BleakfibersMapsDB.profiles[name], defaultProfileSettings)
+        MergeDefaults(NullgatesMapsDB.profiles[name], defaultProfileSettings)
     end
-    BleakfibersMapsDB.activeProfile = name
-    BFM.db = BleakfibersMapsDB.profiles[name]
-    BFM.db.configWindow = BleakfibersMapsDB.configWindow
+    NullgatesMapsDB.activeProfile = name
+    BFM.db = NullgatesMapsDB.profiles[name]
+    BFM.db.configWindow = NullgatesMapsDB.configWindow
 
-    if BleakfibersMapsForever and BleakfibersMapsForever.ApplySettings then
-        BleakfibersMapsForever:ApplySettings()
+    if NullgatesMapsForever and NullgatesMapsForever.ApplySettings then
+        NullgatesMapsForever:ApplySettings()
     end
 
     if BFM.standaloneFrame and BFM.standaloneFrame:IsShown() and BFM.standaloneFrame.SyncAll then
@@ -166,12 +166,12 @@ function BFM:CreateProfile(name, fromName)
     if not name or name == "" then return end
     self:InitDB()
     -- Never overwrite existing profile!
-    if not BleakfibersMapsDB.profiles[name] then
-        local source = fromName and BleakfibersMapsDB.profiles[fromName]
+    if not NullgatesMapsDB.profiles[name] then
+        local source = fromName and NullgatesMapsDB.profiles[fromName]
         if not source then
-            source = BleakfibersMapsDB.profiles[self:GetActiveProfile()] or defaultProfileSettings
+            source = NullgatesMapsDB.profiles[self:GetActiveProfile()] or defaultProfileSettings
         end
-        BleakfibersMapsDB.profiles[name] = DeepCopy(source)
+        NullgatesMapsDB.profiles[name] = DeepCopy(source)
     end
     self:SetActiveProfile(name)
 end
@@ -179,36 +179,36 @@ end
 function BFM:SaveCurrentAs(name)
     if not name or name == "" then return end
     self:InitDB()
-    local cur = BleakfibersMapsDB.profiles[self:GetActiveProfile()]
-    BleakfibersMapsDB.profiles[name] = DeepCopy(cur or defaultProfileSettings)
+    local cur = NullgatesMapsDB.profiles[self:GetActiveProfile()]
+    NullgatesMapsDB.profiles[name] = DeepCopy(cur or defaultProfileSettings)
     self:SetActiveProfile(name)
 end
 
 function BFM:DeleteProfile(name)
     if not name or name == "Default" then return end
     self:InitDB()
-    BleakfibersMapsDB.profiles[name] = nil
-    if BleakfibersMapsDB.activeProfile == name then
+    NullgatesMapsDB.profiles[name] = nil
+    if NullgatesMapsDB.activeProfile == name then
         self:SetActiveProfile("Default")
     end
 end
 
 function BFM:CopyProfile(fromName, toName)
     self:InitDB()
-    if BleakfibersMapsDB.profiles[fromName] then
-        BleakfibersMapsDB.profiles[toName] = DeepCopy(BleakfibersMapsDB.profiles[fromName])
+    if NullgatesMapsDB.profiles[fromName] then
+        NullgatesMapsDB.profiles[toName] = DeepCopy(NullgatesMapsDB.profiles[fromName])
     end
 end
 
 function BFM:ResetProfile(name)
     name = name or self:GetActiveProfile()
     self:InitDB()
-    BleakfibersMapsDB.profiles[name] = DeepCopy(defaultProfileSettings)
-    if BleakfibersMapsDB.activeProfile == name then
-        BFM.db = BleakfibersMapsDB.profiles[name]
-        BFM.db.configWindow = BleakfibersMapsDB.configWindow
-        if BleakfibersMapsForever and BleakfibersMapsForever.ApplySettings then
-            BleakfibersMapsForever:ApplySettings()
+    NullgatesMapsDB.profiles[name] = DeepCopy(defaultProfileSettings)
+    if NullgatesMapsDB.activeProfile == name then
+        BFM.db = NullgatesMapsDB.profiles[name]
+        BFM.db.configWindow = NullgatesMapsDB.configWindow
+        if NullgatesMapsForever and NullgatesMapsForever.ApplySettings then
+            NullgatesMapsForever:ApplySettings()
         end
     end
     if BFM.standaloneFrame and BFM.standaloneFrame:IsShown() and BFM.standaloneFrame.SyncAll then

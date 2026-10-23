@@ -1,14 +1,14 @@
 ## Interface: 16001
-## Title: |cff00c0ffBleakfiber's Maps|r - |cffffd100Forever|r
+## Title: |cff00c0ffNullgate's Maps|r - |cffffd100Forever|r
 ## Notes: An enhanced, lightweight map and square minimap suite designed for World of Warcraft: Forever.
-## Author: Bleakfiber
-## Version: 1.0.8
-## SavedVariables: BleakfibersMapsDB
+## Author: Nullgate Studios
+## Version: 1.1.0
+## SavedVariables: NullgatesMapsDB
 
 ## IconTexture: Interface\Icons\INV_Misc_Map02
 ## X-License: Restricted - Source Available (All Rights Reserved, No Derivatives)
-## X-Website: https://github.com/Bleakfiber/BleakfibersMaps-Forever
-## OptionalDeps: BleakfibersAddonConfig-Forever, BleakfibersAddonConfigForever
+## X-Website: https://github.com/nullgatestudios/NullgatesMaps-Forever
+## OptionalDeps: NullgatesAddonConfig-Forever
 
 
 Locales\enUS.lua

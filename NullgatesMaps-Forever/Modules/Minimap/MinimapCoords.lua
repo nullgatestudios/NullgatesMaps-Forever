@@ -178,12 +178,12 @@ function MinimapCoords:CreateInfoBar()
 end
 
 function MinimapCoords:IsQuestTrackerLocationBarActive()
-    local locFrame = _G["BleakfiberQuestTrackerLocationBar"]
+    local locFrame = _G["NullgateQuestTrackerLocationBar"]
     if locFrame and locFrame:IsShown() then
         return true
     end
 
-    local BQT = _G["BleakfibersQuestTrackerForever"] or _G["BleakfiberQuestTracker"]
+    local BQT = _G["NullgatesQuestTrackerForever"] or _G["NullgateQuestTracker"]
     if BQT and BQT.GetDB then
         local db = BQT:GetDB()
         if db and db.databars and db.databars.enableLocationBar then
@@ -191,7 +191,7 @@ function MinimapCoords:IsQuestTrackerLocationBarActive()
         end
     end
 
-    local rawDB = _G["BleakfiberTrackerDB"]
+    local rawDB = _G["NullgatesQuestTrackerDB"]
     if rawDB then
         if rawDB.databars and rawDB.databars.enableLocationBar then
             return true
@@ -209,7 +209,7 @@ function MinimapCoords:IsQuestTrackerLocationBarActive()
 end
 
 function MinimapCoords:HookQuestTracker()
-    local locFrame = _G["BleakfiberQuestTrackerLocationBar"]
+    local locFrame = _G["NullgateQuestTrackerLocationBar"]
     if locFrame and not self.locFrameHooked then
         self.locFrameHooked = true
         locFrame:HookScript("OnShow", function()
@@ -220,7 +220,7 @@ function MinimapCoords:HookQuestTracker()
         end)
     end
 
-    local BQT = _G["BleakfibersQuestTrackerForever"] or _G["BleakfiberQuestTracker"]
+    local BQT = _G["NullgatesQuestTrackerForever"] or _G["NullgateQuestTracker"]
     if BQT and not self.bqtHooked then
         self.bqtHooked = true
         if BQT.ApplySettings then
@@ -267,7 +267,7 @@ function MinimapCoords:UpdateVisibility()
     if not infoBar then return end
     local shouldShow = BFM.db and BFM.db.minimap and (BFM.db.minimap.showCoords ~= false)
 
-    -- Auto-hide built-in location bar if Bleakfiber's Quest Tracker location databar is active
+    -- Auto-hide built-in location bar if Nullgate's Quest Tracker location databar is active
     if shouldShow and self:IsQuestTrackerLocationBarActive() then
         shouldShow = false
     end

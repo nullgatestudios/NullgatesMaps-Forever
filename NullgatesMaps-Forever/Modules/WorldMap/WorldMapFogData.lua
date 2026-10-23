@@ -1,5 +1,5 @@
 --[[
-    Bleakfiber's Maps - Forever
+    Nullgate's Maps - Forever
     Modules/WorldMap/WorldMapFogData.lua - Fog of War / Map Reveal Data for WoW Forever
     Format: [MapArtID] = { ["width:height:offsetX:offsetY"] = "fileDataID1,fileDataID2..." }
 ]]

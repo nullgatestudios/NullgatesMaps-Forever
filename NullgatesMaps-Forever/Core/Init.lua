@@ -1,10 +1,10 @@
 local addonName, BFM = ...
 
 -- Expose global API
-BleakfibersMapsForever = BleakfibersMapsForever or BFM
-_G["BleakfibersMapsForever"] = BleakfibersMapsForever
+NullgatesMapsForever = NullgatesMapsForever or BFM
+_G["NullgatesMapsForever"] = NullgatesMapsForever
 
-BFM.Title = "Bleakfiber's Maps"
+BFM.Title = "Nullgate's Maps"
 BFM.Version = "1.0.6"
 BFM.modules = {}
 
@@ -21,7 +21,7 @@ function GetMinimapShape()
 end
 
 -- Public method to re-apply all visual settings in real time
-function BleakfibersMapsForever:ApplySettings()
+function NullgatesMapsForever:ApplySettings()
     local squareModule = self.modules["SquareMinimap"]
     if squareModule then
         if squareModule.UpdateBorder then squareModule:UpdateBorder() end
@@ -55,7 +55,7 @@ function BleakfibersMapsForever:ApplySettings()
     end
 end
 
-function BleakfibersMapsForever:ResetPosition()
+function NullgatesMapsForever:ResetPosition()
     local squareModule = self.modules["SquareMinimap"]
     if squareModule and squareModule.ResetPosition then
         squareModule:ResetPosition()
@@ -65,7 +65,7 @@ end
 --[[-----------------------------------------------------------------------------
     Unified Movers Contract
 -------------------------------------------------------------------------------]]
-function BleakfibersMapsForever:ToggleMovers(state)
+function NullgatesMapsForever:ToggleMovers(state)
     local squareModule = self.modules["SquareMinimap"]
     if squareModule and squareModule.ToggleMovers then
         return squareModule:ToggleMovers(state)
@@ -73,7 +73,7 @@ function BleakfibersMapsForever:ToggleMovers(state)
     return false
 end
 
-function BleakfibersMapsForever:IsMoversUnlocked()
+function NullgatesMapsForever:IsMoversUnlocked()
     local squareModule = self.modules["SquareMinimap"]
     if squareModule and squareModule.IsMoversUnlocked then
         return squareModule:IsMoversUnlocked()
@@ -81,40 +81,40 @@ function BleakfibersMapsForever:IsMoversUnlocked()
     return false
 end
 
-function BleakfibersMapsForever:ResetMovers()
+function NullgatesMapsForever:ResetMovers()
     self:ResetPosition()
 end
 
 local function RegisterGlobalMovers()
-    _G.Bleakfibers_MoversRegistry = _G.Bleakfibers_MoversRegistry or {}
-    _G.Bleakfibers_MoversRegistry["BleakfibersMaps"] = {
-        name = "Bleakfiber's Maps",
+    _G.Nullgates_MoversRegistry = _G.Nullgates_MoversRegistry or {}
+    _G.Nullgates_MoversRegistry["NullgatesMaps"] = {
+        name = "Nullgate's Maps",
         sidebarName = "Maps",
-        Toggle = function(state) return BleakfibersMapsForever:ToggleMovers(state) end,
-        Reset = function() BleakfibersMapsForever:ResetMovers() end,
-        IsUnlocked = function() return BleakfibersMapsForever:IsMoversUnlocked() end,
+        Toggle = function(state) return NullgatesMapsForever:ToggleMovers(state) end,
+        Reset = function() NullgatesMapsForever:ResetMovers() end,
+        IsUnlocked = function() return NullgatesMapsForever:IsMoversUnlocked() end,
     }
 end
 
 --[[-----------------------------------------------------------------------------
     Master Config Addon Registration
 -------------------------------------------------------------------------------]]
-function BleakfibersMapsForever:RegisterWithMasterConfig()
-    local BAC = _G["BleakfibersAddonConfigForever"] or _G["BleakfibersAddonConfig"]
+function NullgatesMapsForever:RegisterWithMasterConfig()
+    local BAC = _G["NullgatesAddonConfigForever"] or _G["NullgatesAddonConfig"]
     if not (BAC and type(BAC.RegisterModule) == "function") then
         return false
     end
 
     local moduleData = {
-        id = "BleakfibersMaps",
-        name = "Bleakfiber's Maps",
+        id = "NullgatesMaps",
+        name = "Nullgate's Maps",
         sidebarName = "Maps",
         version = BFM.Version or "1.0.05",
-        author = "Bleakfiber",
-        isBleakfiber = true,
+        author = "Nullgate Studios",
+        isNullgate = true,
         description = "Modular square minimap and world map suite featuring custom borders and Fog of War reveal.",
-        db = _G["BleakfibersMapsDB"] or BFM.db,
-        getDB = function() return _G["BleakfibersMapsDB"] or BFM.db end,
+        db = _G["NullgatesMapsDB"] or BFM.db,
+        getDB = function() return _G["NullgatesMapsDB"] or BFM.db end,
 
         -- Synchronized Profiles Contract
         profiles = {
@@ -129,12 +129,12 @@ function BleakfibersMapsForever:RegisterWithMasterConfig()
         },
 
         -- Unified Movers Contract
-        toggleMovers = function(state) return BleakfibersMapsForever:ToggleMovers(state) end,
-        resetMovers  = function() BleakfibersMapsForever:ResetMovers() end,
-        isMoversUnlocked = function() return BleakfibersMapsForever:IsMoversUnlocked() end,
+        toggleMovers = function(state) return NullgatesMapsForever:ToggleMovers(state) end,
+        resetMovers  = function() NullgatesMapsForever:ResetMovers() end,
+        isMoversUnlocked = function() return NullgatesMapsForever:IsMoversUnlocked() end,
 
         refresh = function()
-            BleakfibersMapsForever:ApplySettings()
+            NullgatesMapsForever:ApplySettings()
         end,
         openStandalone = function()
             BFM:ShowConfigUI()
@@ -146,21 +146,21 @@ function BleakfibersMapsForever:RegisterWithMasterConfig()
         end,
     }
 
-    local success = BAC:RegisterModule("BleakfibersMaps", moduleData)
-    if success and BAC.modules and not BAC.modules["BleakfibersMapsForever"] then
-        BAC.modules["BleakfibersMapsForever"] = moduleData
+    local success = BAC:RegisterModule("NullgatesMaps", moduleData)
+    if success and BAC.modules and not BAC.modules["NullgatesMapsForever"] then
+        BAC.modules["NullgatesMapsForever"] = moduleData
     end
     return success
 end
 
 local function HookBAC()
-    local BAC = _G["BleakfibersAddonConfigForever"] or _G["BleakfibersAddonConfig"]
+    local BAC = _G["NullgatesAddonConfigForever"] or _G["NullgatesAddonConfig"]
     if BAC and not BFM.hasHookedBAC then
         BFM.hasHookedBAC = true
         if BAC.RefreshSidebar then
             hooksecurefunc(BAC, "RefreshSidebar", function()
-                if not BAC.modules or not BAC.modules["BleakfibersMaps"] then
-                    BleakfibersMapsForever:RegisterWithMasterConfig()
+                if not BAC.modules or not BAC.modules["NullgatesMaps"] then
+                    NullgatesMapsForever:RegisterWithMasterConfig()
                 end
             end)
         end
@@ -177,23 +177,23 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1, ...)
     if event == "ADDON_LOADED" then
         if arg1 == addonName then
             BFM:InitDB()
-            _G["BleakfibersMapsDB"] = BleakfibersMapsDB
+            _G["NullgatesMapsDB"] = NullgatesMapsDB
             RegisterGlobalMovers()
             for _, module in pairs(BFM.modules) do
                 if type(module.OnInitialize) == "function" then
                     module:OnInitialize()
                 end
             end
-            BleakfibersMapsForever:RegisterWithMasterConfig()
+            NullgatesMapsForever:RegisterWithMasterConfig()
             HookBAC()
-        elseif arg1 == "BleakfibersAddonConfig-Forever" or arg1 == "BleakfibersAddonConfigForever" then
+        elseif arg1 == "NullgatesAddonConfig-Forever" or arg1 == "NullgatesAddonConfigForever" then
             RegisterGlobalMovers()
-            BleakfibersMapsForever:RegisterWithMasterConfig()
+            NullgatesMapsForever:RegisterWithMasterConfig()
             HookBAC()
         end
     elseif event == "VARIABLES_LOADED" then
         RegisterGlobalMovers()
-        BleakfibersMapsForever:RegisterWithMasterConfig()
+        NullgatesMapsForever:RegisterWithMasterConfig()
         HookBAC()
     elseif event == "PLAYER_LOGIN" then
         RegisterGlobalMovers()
@@ -202,37 +202,36 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1, ...)
                 module:OnEnable()
             end
         end
-        BleakfibersMapsForever:RegisterWithMasterConfig()
+        NullgatesMapsForever:RegisterWithMasterConfig()
         HookBAC()
-        if _G["SlashCmdList"] and SlashCmdList["BLEAKFIBERSCONFIG"] then
-            hooksecurefunc(SlashCmdList, "BLEAKFIBERSCONFIG", function()
-                BleakfibersMapsForever:RegisterWithMasterConfig()
+        if _G["SlashCmdList"] and SlashCmdList["NULLGATESCONFIG"] then
+            hooksecurefunc(SlashCmdList, "NULLGATESCONFIG", function()
+                NullgatesMapsForever:RegisterWithMasterConfig()
             end)
         end
     elseif event == "PLAYER_ENTERING_WORLD" then
         RegisterGlobalMovers()
-        BleakfibersMapsForever:RegisterWithMasterConfig()
+        NullgatesMapsForever:RegisterWithMasterConfig()
         HookBAC()
     end
 end)
 
 -- Slash Commands
-SLASH_BLEAKFIBERSMAPS1 = "/bfm"
-SLASH_BLEAKFIBERSMAPS2 = "/bleakfibersmaps"
-SlashCmdList["BLEAKFIBERSMAPS"] = function(msg)
+SLASH_NULLGATESMAPS1 = "/nmaps"
+SlashCmdList["NULLGATESMAPS"] = function(msg)
     local rawMsg = string.trim(msg or "")
     local cmd, arg = string.match(rawMsg, "^(%S+)%s*(.*)$")
     cmd = string.lower(cmd or "")
     arg = string.lower(arg or "")
-    local prefix = "|cff00c0ffBleakfiber's Maps|r:"
+    local prefix = "|cff00c0ffNullgate's Maps|r:"
 
     if cmd == "" or cmd == "config" or cmd == "options" or cmd == "menu" then
         BFM:ToggleConfigUI()
     elseif cmd == "unlock" or cmd == "move" or cmd == "movers" then
-        local newState = BleakfibersMapsForever:ToggleMovers()
+        local newState = NullgatesMapsForever:ToggleMovers()
         print(string.format("%s Minimap Movers set to %s", prefix, newState and "|cFF00FF00Unlocked|r" or "|cFFFF0000Locked|r"))
     elseif cmd == "resetpos" then
-        BleakfibersMapsForever:ResetPosition()
+        NullgatesMapsForever:ResetPosition()
         print(string.format("%s Minimap position reset to default.", prefix))
     elseif cmd == "reset" then
         BFM:ResetProfile()
@@ -259,7 +258,7 @@ SlashCmdList["BLEAKFIBERSMAPS"] = function(msg)
                 print(string.format("%s Profile '%s' deleted.", prefix, pName))
             end
         else
-            print(string.format("%s Usage: /bfm profile [list | set <name> | create <name> | delete <name>]", prefix))
+            print(string.format("%s Usage: /nmaps profile [list | set <name> | create <name> | delete <name>]", prefix))
         end
     elseif cmd == "size" then
         local num = tonumber(arg)
@@ -268,7 +267,7 @@ SlashCmdList["BLEAKFIBERSMAPS"] = function(msg)
             BFM:NotifySettingsChanged("size")
             print(string.format("%s Minimap size set to %d px", prefix, num))
         else
-            print(string.format("%s Usage: /bfm size <100-512>", prefix))
+            print(string.format("%s Usage: /nmaps size <100-512>", prefix))
         end
     elseif cmd == "quest" or cmd == "questindicator" then
         BFM.db.minimap.questIndicator = not BFM.db.minimap.questIndicator
@@ -302,6 +301,40 @@ SlashCmdList["BLEAKFIBERSMAPS"] = function(msg)
         print(string.format(" - World Map Reveal (Fog): %s", tostring(BFM.db.worldmap.fogClear ~= false)))
         print(string.format(" - Border Size: %d px", BFM.db.minimap.borderSize or 1))
     else
-        print(string.format("%s Commands: /bfm (settings GUI), /bfm movers, /bfm profile <list|set>, /bfm size <num>, /bfm resetpos, /bfm reset, /bfm fog, /bfm status", prefix))
+        print(string.format("%s Commands: /nmaps (settings GUI), /nmaps movers, /nmaps profile <list|set>, /nmaps size <num>, /nmaps resetpos, /nmaps reset, /nmaps fog, /nmaps status", prefix))
     end
+end
+
+-- ---------------------------------------------------------------------------
+-- Pre-rebrand version still installed (e.g. a copied Interface folder) would run twice
+-- ---------------------------------------------------------------------------
+do
+    local OLD_ADDON = "BleakfibersMaps-Forever"
+    local IsAddOnLoaded = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
+    local DisableAddOn = (C_AddOns and C_AddOns.DisableAddOn) or DisableAddOn
+
+    StaticPopupDialogs["NULLGATES_MAPS_OLD_ADDON"] = {
+        text = "Bleakfiber's Maps is now Nullgate's Maps, and the old version is still installed. Running both loads it twice. Disable the old one now, then delete the BleakfibersMaps-Forever folder from Interface\\AddOns.",
+        button1 = "Disable and Reload",
+        button2 = CANCEL,
+        OnAccept = function()
+            DisableAddOn(OLD_ADDON)
+            ReloadUI()
+        end,
+        timeout = 0,
+        whileDead = true,
+        hideOnEscape = true,
+        preferredIndex = 3,
+    }
+
+    local guard = CreateFrame("Frame")
+    guard:RegisterEvent("PLAYER_LOGIN")
+    guard:SetScript("OnEvent", function(self)
+        self:UnregisterAllEvents()
+        C_Timer.After(4, function()
+            if IsAddOnLoaded and IsAddOnLoaded(OLD_ADDON) then
+                StaticPopup_Show("NULLGATES_MAPS_OLD_ADDON")
+            end
+        end)
+    end)
 end

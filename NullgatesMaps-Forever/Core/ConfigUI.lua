@@ -1,5 +1,5 @@
 --[[
-    Bleakfiber's Maps - Forever
+    Nullgate's Maps - Forever
     Core/ConfigUI.lua - Standalone Master Configuration Window & BAC Embed UI
     Tabs: General Settings, Minimap Settings, World Map Settings
 ]]
@@ -8,7 +8,7 @@ local addonName, BFM = ...
 
 local BACKDROP_TEMPLATE = BackdropTemplateMixin and "BackdropTemplate" or nil
 
--- Reusable backdrop definitions matching Bleakfiber's Addon Config
+-- Reusable backdrop definitions matching Nullgate's Addon Config
 local MAIN_WINDOW_BACKDROP = {
     bgFile = "Interface\\Buttons\\WHITE8X8",
     edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
@@ -436,7 +436,7 @@ local function GetAvailableFonts()
     end
     local standardFonts = {
         "Nata Sans Regular", "Nata Sans Bold", "Nata Sans Medium",
-        "BleakUI Regular", "BleakUI Bold",
+        "NullgateUI Regular", "NullgateUI Bold",
         "Friz Quadrata TT", "Arial Narrow", "Skurri", "Morpheus"
     }
     for _, f in ipairs(standardFonts) do
@@ -703,18 +703,18 @@ function BFM:BuildGeneralTab(content, syncList, isEmbed)
 
     local titleLine = content:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
     titleLine:SetPoint("TOPLEFT", content, "TOPLEFT", 16, yOfs)
-    titleLine:SetText("|cFFFFD100Bleakfiber's Maps|r  -  |cFF8899A6World of Warcraft Forever|r")
+    titleLine:SetText("|cFFFFD100Nullgate's Maps|r  -  |cFF8899A6World of Warcraft Forever|r")
     yOfs = yOfs - 22
 
     local infoLine = content:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     infoLine:SetPoint("TOPLEFT", content, "TOPLEFT", 16, yOfs)
-    infoLine:SetText(string.format("|cFFFFD100Version:|r %s    |cFFFFD100Interface:|r 16001    |cFFFFD100Author:|r Bleakfiber", BFM.Version or "1.0.05"))
+    infoLine:SetText(string.format("|cFFFFD100Version:|r %s    |cFFFFD100Interface:|r 16001    |cFFFFD100Author:|r Nullgate", BFM.Version or "1.0.05"))
     yOfs = yOfs - 22
 
-    local bacLoaded = _G["BleakfibersAddonConfigForever"] ~= nil or _G["BleakfibersAddonConfig"] ~= nil
+    local bacLoaded = _G["NullgatesAddonConfigForever"] ~= nil or _G["NullgatesAddonConfig"] ~= nil
     local statusLine = content:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     statusLine:SetPoint("TOPLEFT", content, "TOPLEFT", 16, yOfs)
-    statusLine:SetText(string.format("|cFFFFD100Master Config Hub:|r %s", bacLoaded and "|cFF00FF00Connected (/bac)|r" or "|cFF8899A6Standalone Mode|r"))
+    statusLine:SetText(string.format("|cFFFFD100Master Config Hub:|r %s", bacLoaded and "|cFF00FF00Connected (/nac)|r" or "|cFF8899A6Standalone Mode|r"))
     yOfs = yOfs - 26
 
     local desc = content:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
@@ -755,7 +755,7 @@ function BFM:BuildGeneralTab(content, syncList, isEmbed)
         BFM:SetActiveProfile(newProfile)
         profileLabel:SetText(string.format("Active Profile: |cFFFFD100%s|r", newProfile))
         if content.SyncAll then content.SyncAll() end
-        print(string.format("|cFFFFD100Bleakfiber's Maps|r: Switched to profile '|cFFFFD100%s|r'.", newProfile))
+        print(string.format("|cFFFFD100Nullgate's Maps|r: Switched to profile '|cFFFFD100%s|r'.", newProfile))
     end, "Cycles through available saved profiles.")
     cycleProfileBtn:SetPoint("TOPLEFT", content, "TOPLEFT", 16, yOfs)
 
@@ -763,7 +763,7 @@ function BFM:BuildGeneralTab(content, syncList, isEmbed)
         local cur = BFM:GetActiveProfile()
         BFM:ResetProfile(cur)
         if content.SyncAll then content.SyncAll() end
-        print(string.format("|cFFFFD100Bleakfiber's Maps|r: Profile '|cFFFFD100%s|r' reset to defaults.", cur))
+        print(string.format("|cFFFFD100Nullgate's Maps|r: Profile '|cFFFFD100%s|r' reset to defaults.", cur))
     end, "Resets current profile settings back to defaults without affecting other profiles.")
     resetProfileBtn:SetPoint("LEFT", cycleProfileBtn, "RIGHT", 10, 0)
     yOfs = yOfs - 36
@@ -773,18 +773,18 @@ function BFM:BuildGeneralTab(content, syncList, isEmbed)
     yOfs = yOfs - 32
 
     local commands = {
-        { cmd = "/bfm",              desc = "Toggle settings window" },
-        { cmd = "/bfm movers",       desc = "Toggle click-to-drag minimap movement overlay" },
-        { cmd = "/bfm profile <cmd>",desc = "Profile manager (list, set <name>, create, delete)" },
-        { cmd = "/bfm size <num>",   desc = "Adjust minimap pixel size (100 - 512)" },
-        { cmd = "/bfm resetpos",     desc = "Restore default top-right minimap anchor" },
-        { cmd = "/bfm reset",        desc = "Reset current active profile to defaults" },
-        { cmd = "/bfm fog",          desc = "Toggle World Map Fog of War reveal" },
-        { cmd = "/bfm quest",        desc = "Toggle square quest zone indicator" },
-        { cmd = "/bfm diel",         desc = "Toggle sun/moon day-night dial (DielFrame)" },
-        { cmd = "/bfm icons",        desc = "Toggle square minimap icon perimeter" },
-        { cmd = "/bfm coords",       desc = "Toggle minimap coordinate & subzone bar" },
-        { cmd = "/bfm status",       desc = "Print current active settings to chat" },
+        { cmd = "/nmaps",              desc = "Toggle settings window" },
+        { cmd = "/nmaps movers",       desc = "Toggle click-to-drag minimap movement overlay" },
+        { cmd = "/nmaps profile <cmd>",desc = "Profile manager (list, set <name>, create, delete)" },
+        { cmd = "/nmaps size <num>",   desc = "Adjust minimap pixel size (100 - 512)" },
+        { cmd = "/nmaps resetpos",     desc = "Restore default top-right minimap anchor" },
+        { cmd = "/nmaps reset",        desc = "Reset current active profile to defaults" },
+        { cmd = "/nmaps fog",          desc = "Toggle World Map Fog of War reveal" },
+        { cmd = "/nmaps quest",        desc = "Toggle square quest zone indicator" },
+        { cmd = "/nmaps diel",         desc = "Toggle sun/moon day-night dial (DielFrame)" },
+        { cmd = "/nmaps icons",        desc = "Toggle square minimap icon perimeter" },
+        { cmd = "/nmaps coords",       desc = "Toggle minimap coordinate & subzone bar" },
+        { cmd = "/nmaps status",       desc = "Print current active settings to chat" },
     }
 
     for _, entry in ipairs(commands) do
@@ -801,11 +801,11 @@ function BFM:BuildGeneralTab(content, syncList, isEmbed)
     yOfs = yOfs - 32
 
     local resetAllBtn = CreateStyledButton(content, "Reset All Settings", 150, 24, function()
-        wipe(BleakfibersMapsDB)
+        wipe(NullgatesMapsDB)
         BFM:InitDB()
         BFM:ApplySettings()
         if content.SyncAll then content.SyncAll() end
-        print("|cFFFFD100Bleakfiber's Maps|r: All settings restored to factory defaults.")
+        print("|cFFFFD100Nullgate's Maps|r: All settings restored to factory defaults.")
     end, "Resets all minimap and world map settings back to default values.")
     resetAllBtn:SetPoint("TOPLEFT", content, "TOPLEFT", 16, yOfs)
 
@@ -961,8 +961,8 @@ function BFM:BuildMinimapTab(content, syncList, isEmbed)
     table.insert(syncList, cbUnlock)
 
     local resetBtn = CreateStyledButton(content, "Reset Position", 110, 22, function()
-        BleakfibersMapsForever:ResetPosition()
-        print("|cFFFFD100Bleakfiber's Maps|r: Minimap position reset to default.")
+        NullgatesMapsForever:ResetPosition()
+        print("|cFFFFD100Nullgate's Maps|r: Minimap position reset to default.")
     end, "Restores the minimap to its default top-right anchor position.")
     resetBtn:SetPoint("TOPLEFT", content, "TOPLEFT", 280, yOfs - 1)
 
@@ -1252,7 +1252,7 @@ function BFM:CreateStandaloneConfigFrame()
     local xOfs = db.xOfs or 0
     local yOfs = db.yOfs or 0
 
-    local f = CreateFrame("Frame", "BleakfibersMapsConfigFrame", UIParent, BACKDROP_TEMPLATE)
+    local f = CreateFrame("Frame", "NullgatesMapsConfigFrame", UIParent, BACKDROP_TEMPLATE)
     f:SetSize(width, height)
     f:SetPoint(point, UIParent, relPoint, xOfs, yOfs)
     f:SetFrameStrata("HIGH")
@@ -1262,7 +1262,7 @@ function BFM:CreateStandaloneConfigFrame()
     f:SetMovable(true)
     f:SetResizable(true)
 
-    tinsert(UISpecialFrames, "BleakfibersMapsConfigFrame")
+    tinsert(UISpecialFrames, "NullgatesMapsConfigFrame")
 
     if f.SetResizeBounds then
         f:SetResizeBounds(580, 420, 1100, 850)
@@ -1309,7 +1309,7 @@ function BFM:CreateStandaloneConfigFrame()
     -- Title Text
     local titleText = titleBar:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     titleText:SetPoint("LEFT", titleIcon, "RIGHT", 8, 0)
-    titleText:SetText("|cFFFFD100Bleakfiber's Maps|r  |cFF8899A6Forever|r")
+    titleText:SetText("|cFFFFD100Nullgate's Maps|r  |cFF8899A6Forever|r")
 
     -- Version Subtitle
     local versionText = titleBar:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
@@ -1318,16 +1318,16 @@ function BFM:CreateStandaloneConfigFrame()
 
     -- Refresh Button in Title Bar
     local refreshBtn = CreateStyledButton(titleBar, "Refresh", 70, 20, function()
-        BleakfibersMapsForever:ApplySettings()
+        NullgatesMapsForever:ApplySettings()
         if f.SyncAll then f:SyncAll() end
-        print("|cFFFFD100Bleakfiber's Maps|r: Settings refreshed.")
+        print("|cFFFFD100Nullgate's Maps|r: Settings refreshed.")
     end, "Reapplies all visual settings and refreshes map projections.")
     refreshBtn:SetPoint("RIGHT", titleBar, "RIGHT", -6, 0)
 
     -- Toggle Movers Button in Title Bar (Standardized standalone mover button)
     local btnMovers = CreateStyledButton(titleBar, "Toggle Movers", 100, 20, function()
-        local newState = BleakfibersMapsForever:ToggleMovers()
-        print(string.format("|cFFFFD100Bleakfiber's Maps|r: Minimap Movers %s.", newState and "|cFF00FF00Unlocked|r" or "|cFFFF0000Locked|r"))
+        local newState = NullgatesMapsForever:ToggleMovers()
+        print(string.format("|cFFFFD100Nullgate's Maps|r: Minimap Movers %s.", newState and "|cFF00FF00Unlocked|r" or "|cFFFF0000Locked|r"))
     end, "Toggles minimap anchor mover overlay for click-and-drag repositioning.")
     btnMovers:SetPoint("RIGHT", refreshBtn, "LEFT", -6, 0)
     f.btnMovers = btnMovers
@@ -1380,7 +1380,7 @@ function BFM:CreateStandaloneConfigFrame()
     -- Footer hint text
     local footerText = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
     footerText:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 12, 8)
-    footerText:SetText("|cFF667788Use /bfm or /bleakfibersmaps to toggle this window|r")
+    footerText:SetText("|cFF667788Use /nmaps to toggle this window|r")
 
     -- Horizontal Tab Bar (Top row, matching Quest Tracker in BAC)
     local tabBar = CreateFrame("Frame", nil, f)
